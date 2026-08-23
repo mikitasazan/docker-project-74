@@ -13,6 +13,7 @@
     "lint": "oxlint --config=.oxlintrc.json .",
     "start": "fastify start -a 0.0.0.0 -p 8080 server/plugin.js -l debug -P -o",
     "dev": "fastify start -a 0.0.0.0 -p 8080 server/plugin.js -l debug -P -o",
+    "migrate": "drizzle-kit migrate",
     "lint:fix": "oxfmt --ignore-path=.oxfmtignore . && oxlint --config=.oxlintrc.json --fix .",
     "format": "oxfmt --ignore-path=.oxfmtignore .",
     "format:check": "oxfmt --ignore-path=.oxfmtignore --check .",
