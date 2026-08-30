@@ -1,13 +1,47 @@
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/mikitasazan/docker-project-74/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/mikitasazan/docker-project-74/actions)
-## JS Fastify Blog in Docker Compose
+## JS Fastify Blog в Docker Compose
 
-The `app/` directory contains the Fastify Blog application. Docker Compose
-installs its dependencies and starts the development server on port 8080.
+[![Actions Status](https://github.com/mikitasazan/docker-project-74/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/mikitasazan/docker-project-74/actions)
+
+Учебный проект по упаковке Fastify-блога в Docker Compose. Приложение лежит в
+`app/`, Caddy работает как reverse proxy, а SQLite используется для локального
+запуска без внешней базы.
+
+## Требования
+
+- Docker Engine с Compose v2;
+- 2 ГБ свободной памяти для сборки Node.js-зависимостей.
+
+## Запуск
 
 ```bash
 docker compose up --build
 ```
 
-Open <http://localhost:8080> after the container starts. Stop the service with
-`docker compose down`.
+Откройте http://localhost:8080 после запуска. Остановите сервис:
+
+```bash
+docker compose down
+```
+
+Для проверки reverse proxy используйте профиль из override-файла:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.override.yml up --build
+```
+
+В этом режиме Caddy доступен на порту 80 и передаёт запросы в приложение.
+
+## Команды приложения
+
+```bash
+cd app
+make install
+make db-migrate
+make lint
+make test
+make build
+```
+
+Переменные базы данных задаются через `app/.env`; пример находится в
+`app/.env.example`. Продакшен-сборка использует `app/Dockerfile`, а локальная
+разработка — `docker-compose.override.yml`.

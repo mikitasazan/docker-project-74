@@ -30,9 +30,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends make \
 WORKDIR /app
 COPY --from=builder /app /app
 
-# Порт не задаётся: fastify-cli по умолчанию слушает 3000, и на этот порт
-# рассчитан урок docker_basics_course/600-network, где контейнер запускают
-# как `docker run -p 8080:3000`.
+# Приложение слушает порт 8080, заданный в package.json. При ручном запуске
+# контейнера пробросьте его как `docker run -p 8080:8080`.
 #
 # Адрес обязателен: на 127.0.0.1 сервер внутри контейнера снаружи недоступен,
 # ровно об этом урок и рассказывает.
