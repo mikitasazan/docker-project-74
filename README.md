@@ -44,4 +44,5 @@ make build
 
 Переменные базы данных задаются через `app/.env`; пример находится в
 `app/.env.example`. Продакшен-сборка использует `app/Dockerfile`, а локальная
-разработка — `docker-compose.override.yml`.
+разработка — `docker-compose.override.yml`. Makefile использует
+`npx pnpm@11.20.0`, поэтому глобально устанавливать pnpm не требуется.

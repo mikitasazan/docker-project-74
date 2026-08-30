@@ -1,19 +1,21 @@
+PNPM ?= npx --yes pnpm@11.20.0
+
 setup: install db-migrate
 
 install:
-	pnpm install
+	$(PNPM) install
 
 db-migrate:
-	pnpm run migrate
+	$(PNPM) run migrate
 
 build:
-	pnpm run build
+	$(PNPM) run build
 
 prepare-env:
 	cp -n .env.example .env
 
 start:
-	NODE_ENV=production pnpm run start
+	NODE_ENV=production $(PNPM) run start
 
 dev:
 	pnpm exec concurrently "make start-frontend" "make start-backend"
@@ -22,14 +24,14 @@ start-backend:
 	npm start -- --watch --verbose-watch --ignore-watch='node_modules .git .sqlite'
 
 start-frontend:
-	pnpm exec webpack --watch --progress
+	$(PNPM) exec webpack --watch --progress
 
 lint:
-	pnpm --silent run lint
-	pnpm --silent run format:check
+	$(PNPM) --silent run lint
+	$(PNPM) --silent run format:check
 
 lint-fix:
-	pnpm --silent run lint:fix
+	$(PNPM) --silent run lint:fix
 
 test:
-	NODE_ENV=test pnpm --silent test
+	NODE_ENV=test $(PNPM) --silent test
