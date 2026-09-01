@@ -1,3 +1,10 @@
 :80 {
     reverse_proxy app:8080
 }
+
+:443 {
+    tls internal {
+        on_demand
+    }
+    reverse_proxy app:8080
+}
