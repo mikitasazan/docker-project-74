@@ -3,7 +3,7 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile
-    command: sh -c "npm install -g pnpm@11.22.0 && pnpm install && pnpm dev"
+    command: sh -c "npm install -g pnpm@11.22.0 && pnpm install && pnpm run build && pnpm dev"
     ports:
       - "8080:8080"
     volumes:
